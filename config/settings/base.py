@@ -30,6 +30,8 @@ LOCAL_APPS = [
     'apps.core',
     'apps.users',
     'apps.company',
+    'apps.product',
+    'apps.gallery',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',

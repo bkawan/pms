@@ -1,14 +1,10 @@
-import os
-
-from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
-# Create your models here.
-from django.utils.text import slugify
-
 from apps.core.utils import image_upload_to
+
+# Create your models here.
 
 TITLE_CHOICES = (
     ("Mr", "Mr"),
@@ -28,8 +24,9 @@ GENDER_CHOICES = (
 @python_2_unicode_compatible
 class User(AbstractUser):
     title = models.CharField(max_length=10, choices=TITLE_CHOICES)
+    full_name = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     image = models.ImageField(upload_to=image_upload_to, null=True, blank=True)
 
     def __str__(self):
-        return '{} {} - {}'.format(self.first_name, self.last_name, self.username)
+        return '{} - {}'.format(self.username, self.full_name)

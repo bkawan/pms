@@ -9,7 +9,8 @@
 .bg-black {
     background: black;
 }
-.bg-blue-grey{
+
+.bg-blue-grey {
     background: #424242;
 }
 
@@ -29,7 +30,11 @@
     background: #00aced;
 }
 
-
-.no-display{
+.no-display {
     display: none;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
 }

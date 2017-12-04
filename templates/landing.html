@@ -1,10 +1,427 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>lipipoint</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick-theme.css' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logo/lipipoint.png' %}"/>
+    <!--<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">-->
+    <!--<link rel="stylesheet"-->
+    <!--href="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/style.css">-->
 
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<section id="main-navigation">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo/lipipoint.png" alt="lipipoint" width="64" height="64"
+                     class="bg-black text-white">
+                Lipipoint
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact-us">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clients">Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#our-team">Our Team</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<section id="marketing-slide">
+    <div class="container-fluid p-0 m-0">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <img src="assets/images/marketing-slide/slide3.jpg" alt="marketing-title" height="600" width="100%">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>Software Development</h3>
+                        <!--<p>Some Texts</p>-->
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+</section>
+<div class="container-wrapper">
+    <section id="services">
+        <div class="container py-5">
+            <div class="pb-4">
+                <h1 class="text-center">Stuff We Do</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+                <p class="text-center">We Do various types of software development and many more,</p>
+            </div>
+
+            <div class="card-group">
+                <div class="card border-0">
+                    <div class="card-block">
+                        <i class="fa fa-image fa-5x pb-2"></i>
+                        <h4 class="card-title h5">Graphics and Web Design</h4>
+                        <p class="card-text">
+                            We do Graphics Design, photoshop Design, Website Design and Development,
+                            logo design, banner design.
+
+                    </div>
+                    <div class="card-footer bg-white border-0 no-display">
+                        <small class="text-muted">Read More</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--- About us section -->
+    <section id="about-us" class="bg-black text-white">
+        <div class="container">
+            <div class="py-5">
+                <h1 class="text-center">Who Are We ? </h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+                <p class="text-center"> We are an IT company</p>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/images/about-us/about-us.jpg" alt="About lipipoint" width="100%" height="100%">
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        lipipoint is an IT Business company to provide technology solutions,
+                        consultation and infrastructure design. It is established in 2017.
+                        <br><br>
+                        We offer website design and development, custom software development, data visualization,
+                        data mining, scraping, SEO optimization, ecommerce development etc.
+                        <br>
+                        <br>
+                        We have group of experts who have many years of experiences in IT industry.
+                        <br>
+                        <br>
+                        We are proud to be a part of IT service and solution company.
+                        Whatever we do , we do with care, passion and secure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---  End About us section -->
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="py-5">
+                <h1 class="text-center">Our Works</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+                <p class="text-center">We Do various types of software development and many more,</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card border-0">
+                        <img class="card-img-top img-thumbnail" src="assets/images/portfolio/nepalunderground.png"
+                             alt="nepalunderground.com">
+                        <div class="card-footer bg-white border-0">
+                            <small class="text-muted">nepalunderground.com</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Portfolio Section -->
+
+    <!---  Section -->
+    <section id="expertise" class="bg-black py-5">
+        <div class="container">
+            <div class="pb-2 text-white">
+                <h1 class="text-center">Our Expertise</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+            <div class="row">
+                <div class="px-4">
+                    <img src="assets/images/expertise/python.svg" alt="python" width="64" height="64">
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--- End Expertise Section -->
+
+    <!-- Clients -->
+    <section id="clients" class="py-5">
+        <div class="container">
+            <div class="pb-2">
+                <h1 class="text-center">Our Clients</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+            <div class="clients row">
+                <div class="card m-5 border-0">
+                    <img class="mx-auto" src="assets/images/clients/healthmandu.png" alt="healthmandu" width="100%"
+                         height="100%">
+                    <div class="float-left small py-2">
+                        healthmandu
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Clients -->
+    <!-- Our Team Section starts -->
+    <section id='our-team'>
+        <div class="container-fluid">
+            <div class="py-5">
+                <h1 class="text-center">Our Awesome Team</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+            <div class="row m-2">
+                <div class="card border-0 mx-auto">
+                    <img src="assets/images/team/team1.png" alt=""
+                         class="mx-auto card-img-top rounded-circle img-thumbnail" height="120"
+                         width="120">
+                    <div class="card-text text-center border-0">
+                        <h5 class="card-title p-0 m-0">
+                            Jhon Doe
+                        </h5>
+                        <p class="card-text small text-center p-0 m-0">
+                            Developer
+                        </p>
+                        <p class="card-text small text-center">
+                            <a href=""><i class="fa fa-facebook"></i></a>
+                            <a href=""><i class="fa fa-twitter"></i></a>
+                            <a href=""><i class="fa fa-google-plus"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Our Team Section ends -->
+
+    <!---  Google map Section -->
+    <section id="google-map">
+        <div class="container">
+            <div class="py-5">
+                <h1 class="text-center">Location</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+        </div>
+        <div id="map"></div>
+        <script>
+            function initMap() {
+                var uluru = {lat: 27.673136, lng: 85.422302};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFWjMs1TyZk2FOk7bjOcaTQeL8ymkgMhA&callback=initMap">
+        </script>
+
+    </section>
+    <!-- Section Maps Ends -->
+
+
+    <!-- Contact us section-->
+    <section id="contact-us">
+        <div class="container">
+            <div class="py-5">
+                <h1 class="text-center">Contact Us</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="http://formspree.io/lipipoint@gmail.com"
+                          method="POST">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="full_name">Full Name:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="name" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="email">Email:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="email" name="email" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="contact_number">Number:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="contact_number"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="message">Message:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows=5 type="text" name="message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <input type="submit" value="Sumbit" class="form-control btn btn-success">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h1>Drop Line</h1>
+                    <h6><i class="fa fa-envelope fa-3x"></i> Don't hesitate to contact us</h6>
+                    <hr>
+                    <p>Email: {{ company_detail.email|default:'lipipoint@gmail.comcom' }}</p>
+                    <p>Address: {{ company_detail.address|default:'Bhaktapur, Nepal' }}</p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End  contact Section-->
+
+
+    <!--footer-->
+    <section id="footer" class="bg-black">
+        <div class="container p-3">
+            <div class="row offset-4">
+                <div class="p-3">
+                    <a href="https://facebook.com/lipipoint/" class="">
+                        <i class="fa fa-facebook-square fa-4x"></i>
+                    </a>
+                </div>
+                <div class="p-3">
+                    <a href="https://twitter.com/lipipoint" class="">
+                        <i class="fa fa-twitter-square fa-4x"></i>
+                    </a>
+                </div>
+                <div class="p-3">
+                    <a href="https://plus.google.com/117423112742738953779/" class="">
+                        <i class="fa fa-google-plus-square fa-4x"></i>
+                    </a>
+                </div>
+                <div class="p-3">
+                    <a href="https://github.com/lipipoint/">
+                        <i class="fa fa-github-square fa-4x"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row offset-4">
+                <div class="col-md-12">
+                    <div class="Rights-Reserved">
+                        <h6>&copy; 2017 lipipoint - All Rights Reserved
+                            <a href="#"><span>Privacy</span></a> /
+                            <a href="#"><span>TOS</span></a> /
+                            <a href="#"><span>FAQ</span></a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end footer section -->
+</div>
+<script src="{% static 'assets/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/tether/tether.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/slick/slick.min.js' %}"></script>
+
+<!--<script data-cfasync="false" type="text/javascript" src="assets/js/form-submission-handler.js"></script>-->
+<script>
+    $('.clients').slick({
+        dots: true,
+        infinite: true,
+        speed: 2000,
+        autoplay: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
+</script>
 </body>
 </html>
