@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick-theme.css' %}"/>
-    <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logo/lipipoint.png' %}"/>
-    <!--<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">-->
-    <!--<link rel="stylesheet"-->
-    <!--href="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/style.css">-->
+    <link rel="shortcut icon" type="image/png" href="{{ company_detail.logo.url }}"/>
 
 
 </head>
@@ -27,9 +24,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="assets/images/logo/lipipoint.png" alt="lipipoint" width="64" height="64"
+                <img src="{{ company_detail.logo.url }}" alt="lipipoint" width="64" height="64"
                      class="bg-black text-white">
-                Lipipoint
+                {{ company_detail.name|default:'lipipoint' }}
             </a>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -65,18 +62,28 @@
     <div class="container-fluid p-0 m-0">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {% for slider in sliders %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"
+                        {% if forloop.counter0 == 0 %}class="active" {% endif %}></li>
+                {% endfor %}
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img src="assets/images/marketing-slide/slide3.jpg" alt="marketing-title" height="600" width="100%">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Software Development</h3>
-                        <!--<p>Some Texts</p>-->
-                    </div>
-                </div>
+                {% if sliders %}
+                    {% for slider in sliders %}
+                        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                            <img src="{{ slider.image.url }}"
+                                 alt="{% if slider.caption %}{{ slider.caption }}{% endif %}" height="600" width="100%">
+                            <div class="carousel-caption d-none d-md-block">
+                                {% if slider.caption %}
+                                    <h3>{{ slider.caption }}</h3>
+                                {% endif %}
+                                {% if slider.description %}
+                                    <p>{{ slider.description }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -100,19 +107,43 @@
             </div>
 
             <div class="card-group">
-                <div class="card border-0">
-                    <div class="card-block">
-                        <i class="fa fa-image fa-5x pb-2"></i>
-                        <h4 class="card-title h5">Graphics and Web Design</h4>
-                        <p class="card-text">
-                            We do Graphics Design, photoshop Design, Website Design and Development,
-                            logo design, banner design.
+                {% if services %}
+                    {% for service in services %}
+                        <div class="card border-0">
+                            {% if service.icon %}
+                                <img class="card-img-top px-3" src="{{ service.icon.url }}" alt="{{ service.name }}"
+                                     width="120" height="80">
+                            {% elif service.image %}
+                                <img class="card-img-top px-3" src="{{ service.image.url }}" alt="{{ service.name }}"
+                                     width="300"
+                                     height="200">
+                            {% else %}
+                                <i class="fa fa-image fa-5x px-3"></i>
+                            {% endif %}
+                            <div class="card-block">
+                                <h4 class="card-title h5">{{ service.name }}</h4>
+                                <p class="card-text"> {{ service.description }}</p>
+                            </div>
+                            <div class="card-footer bg-white border-0 no-display">
+                                <small class="text-muted">Read More</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="card border-0">
+                        <div class="card-block">
+                            <i class="fa fa-image fa-5x pb-2"></i>
+                            <h4 class="card-title h5">Graphics and Web Design</h4>
+                            <p class="card-text">
+                                We do Graphics Design, photoshop Design, Website Design and Development,
+                                logo design, banner design.
+                        </div>
+                        <div class="card-footer bg-white border-0 no-display">
+                            <small class="text-muted">Read More</small>
+                        </div>
+                    </div>
 
-                    </div>
-                    <div class="card-footer bg-white border-0 no-display">
-                        <small class="text-muted">Read More</small>
-                    </div>
-                </div>
+                {% endif %}
 
             </div>
         </div>
@@ -130,23 +161,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="assets/images/about-us/about-us.jpg" alt="About lipipoint" width="100%" height="100%">
+                    {% if company_detail.featured_image %}
+                        <img src="{{ company_detail.featured_image.url }}" alt="{{ company_detail.name }}" width="100%"
+                             height="100%">
+                    {% else %}
+
+                        <img src="{% static 'assets/images/about-us/about-us.jpg' %}" alt="About lipipoint" width="100%"
+                             height="100%">
+                    {% endif %}
+
                 </div>
                 <div class="col-md-6">
-                    <p>
-                        lipipoint is an IT Business company to provide technology solutions,
-                        consultation and infrastructure design. It is established in 2017.
-                        <br><br>
-                        We offer website design and development, custom software development, data visualization,
-                        data mining, scraping, SEO optimization, ecommerce development etc.
-                        <br>
-                        <br>
-                        We have group of experts who have many years of experiences in IT industry.
-                        <br>
-                        <br>
-                        We are proud to be a part of IT service and solution company.
-                        Whatever we do , we do with care, passion and secure.
-                    </p>
+                    {{ company_detail.description|safe }}
                 </div>
             </div>
         </div>
@@ -162,15 +188,24 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card border-0">
-                        <img class="card-img-top img-thumbnail" src="assets/images/portfolio/nepalunderground.png"
-                             alt="nepalunderground.com">
-                        <div class="card-footer bg-white border-0">
-                            <small class="text-muted">nepalunderground.com</small>
+                {% if products %}
+                    {% for product in products %}
+                        <div class="col-md-3">
+                            <div class="card border-0">
+                                <img class="card-img-top img-thumbnail"
+                                     src="{{ product.featured_image.url }}"
+                                     alt="{{ product.name }}">
+                                <div class="card-footer bg-white border-0">
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <small class="text-muted">{{ product.name }}</small>
+                                    </a>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% endif %}
+
             </div>
         </div>
     </section>
@@ -201,13 +236,24 @@
                 <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
             </div>
             <div class="clients row">
-                <div class="card m-5 border-0">
-                    <img class="mx-auto" src="assets/images/clients/healthmandu.png" alt="healthmandu" width="100%"
-                         height="100%">
-                    <div class="float-left small py-2">
-                        healthmandu
-                    </div>
-                </div>
+                {% if clients %}
+                    {% for client in clients %}
+                        <div class="card m-5 border-0">
+                            <img class="mx-auto" src="{{ client.logo.url }}" alt="{{ client.name }}"
+                                 width="100%"
+                                 height="100%">
+                            <div class="float-left small py-2">
+                                {% if client.website %}
+                                    <a href="{{ client.website }}">{{ client.name }}</a>
+                                {% else %}
+                                    {{ client.name }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
+
             </div>
         </div>
     </section>
@@ -283,7 +329,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <form action="http://formspree.io/lipipoint@gmail.com"
+                    <form action="http://formspree.io/{{ company_detail.email|default:'lipipoing@gmail.com' }}"
                           method="POST">
                         <div class="form-group row">
                             <div class="col-md-3">
@@ -327,11 +373,25 @@
                 </div>
                 <div class="col-md-6">
                     <h1>Drop Line</h1>
-                    <h6><i class="fa fa-envelope fa-3x"></i> Don't hesitate to contact us</h6>
+                    <h6> Don't hesitate to contact us</h6>
                     <hr>
-                    <p>Email: {{ company_detail.email|default:'lipipoint@gmail.comcom' }}</p>
-                    <p>Address: {{ company_detail.address|default:'Bhaktapur, Nepal' }}</p>
-                    <p></p>
+                    <p><i class="fa fa-envelope fa-2x"> </i>
+                        Email: {{ company_detail.email|default:'lipipoint@gmail.com' }}</p>
+                    <p>
+                        <i class="fa fa-map-marker fa-2x"></i>Address: {{ company_detail.address|default:'Bhaktapur,Nepal' }}
+                    </p>
+                    <p><i class="fa fa-phone fa-2x"></i> Contact: <a href="tel:{{ company_detail.phone1 }}">
+                        {{ company_detail.phone1 }}</a>
+                        {% if company_detail.phone2 %}
+                            , <a href="tel:{{ company_detail.phone2 }}">{{ company_detail.phone2 }}</a>
+                        {% endif %}
+                        {% if company_detail.phone3 %}
+                            , <a href="tel:{{ company_detail.phone3 }}">{{ company_detail.phone3 }}</a>
+                        {% endif %}
+                        {% if company_detail.phone4 %}
+                            , <a href="tel:{{ company_detail.phone4 }}">{{ company_detail.phone4 }}</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -367,7 +427,7 @@
             <div class="row offset-4">
                 <div class="col-md-12">
                     <div class="Rights-Reserved">
-                        <h6>&copy; 2017 lipipoint - All Rights Reserved
+                        <h6>&copy; 2017 {{ company_detail.name|default:'lipipoint' }} - All Rights Reserved
                             <a href="#"><span>Privacy</span></a> /
                             <a href="#"><span>TOS</span></a> /
                             <a href="#"><span>FAQ</span></a></h6>
