@@ -266,25 +266,36 @@
                 <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
             </div>
             <div class="row m-2">
-                <div class="card border-0 mx-auto">
-                    <img src="assets/images/team/team1.png" alt=""
-                         class="mx-auto card-img-top rounded-circle img-thumbnail" height="120"
-                         width="120">
-                    <div class="card-text text-center border-0">
-                        <h5 class="card-title p-0 m-0">
-                            Jhon Doe
-                        </h5>
-                        <p class="card-text small text-center p-0 m-0">
-                            Developer
-                        </p>
-                        <p class="card-text small text-center">
-                            <a href=""><i class="fa fa-facebook"></i></a>
-                            <a href=""><i class="fa fa-twitter"></i></a>
-                            <a href=""><i class="fa fa-google-plus"></i></a>
-                            <a href=""><i class="fa fa-linkedin"></i></a>
-                        </p>
+                {% for team_member in team_members %}
+                    <div class="card border-0 mx-auto">
+                        <img src="{{ team_member.image.url }}" alt="{{ team_member.name }}"
+                             class="mx-auto card-img-top rounded-circle img-thumbnail" height="120"
+                             width="120">
+                        <div class="card-text text-center border-0">
+                            <h5 class="card-title p-0 m-0">
+                                {{ team_member.name }}
+                            </h5>
+                            <p class="card-text small text-center p-0 m-0">
+                                {{ team_member.designation }}
+                            </p>
+                            <p class="card-text text-center">
+                                {% if team_member.facebook %}
+                                    <a href="{{ team_member.facebook }}"><i class="fa fa-facebook"></i></a>
+                                {% endif %}
+                                {% if team_member.twitter %}
+
+                                    <a href="{{ team_member.twitter }}"><i class="fa fa-twitter"></i></a>
+                                {% endif %}
+                                {% if team_member.google_plus %}
+                                    <a href="{{ team_member.google_plus }}"><i class="fa fa-google-plus"></i></a>
+                                {% endif %}
+                                {% if team_member.linkedin %}
+                                    <a href="{{ team_member.linkedin }}"><i class="fa fa-linkedin"></i></a>
+                                {% endif %}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -301,7 +312,16 @@
         <div id="map"></div>
         <script>
             function initMap() {
-                var uluru = {lat: 27.673136, lng: 85.422302};
+                var lat = '{{ company_detail.lat }}';
+                var lng = '{{ company_detail.lng }}';
+                console.log(parseFloat(lng));
+
+                if (isNaN(parseFloat(lat)) || isNaN(parseFloat(lng))) {
+                    lat = 27.6710;
+                    lng = 85.4298;
+                }
+                console.log(lat, lng);
+                var uluru = {lat: parseFloat(lat), lng: parseFloat(lng)};
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 15,
                     center: uluru
