@@ -41,7 +41,7 @@
                         <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                        <a class="nav-link" href="#products">Products</a>
                     </li>
 
                     <li class="nav-item">
@@ -178,8 +178,8 @@
         </div>
     </section>
     <!---  End About us section -->
-    <!-- Portfolio Section -->
-    <section id="portfolio">
+    <!-- products Section -->
+    <section id="products">
         <div class="container">
             <div class="py-5">
                 <h1 class="text-center">Our Works</h1>
@@ -209,7 +209,7 @@
             </div>
         </div>
     </section>
-    <!-- End Portfolio Section -->
+    <!-- End products Section -->
 
     <!---  Section -->
     <section id="expertise" class="bg-black py-5">
@@ -423,31 +423,56 @@
     <section id="footer" class="bg-black">
         <div class="container p-3">
             <div class="row offset-4">
-                <div class="p-3">
-                    <a href="https://facebook.com/lipipoint/" class="">
-                        <i class="fa fa-facebook-square fa-4x"></i>
-                    </a>
-                </div>
-                <div class="p-3">
-                    <a href="https://twitter.com/lipipoint" class="">
-                        <i class="fa fa-twitter-square fa-4x"></i>
-                    </a>
-                </div>
-                <div class="p-3">
-                    <a href="https://plus.google.com/117423112742738953779/" class="">
-                        <i class="fa fa-google-plus-square fa-4x"></i>
-                    </a>
-                </div>
-                <div class="p-3">
-                    <a href="https://github.com/lipipoint/">
-                        <i class="fa fa-github-square fa-4x"></i>
-                    </a>
-                </div>
+                {% if company_detail.facebook %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.facebok }}" class="">
+                            <i class="fa fa-facebook-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.twitter %}
+
+                    <div class="p-3">
+                        <a href="{{ company_detail.twitter }}" class="">
+                            <i class="fa fa-twitter-square fa-4x"></i>
+                        </a>
+                    </div>
+
+                {% endif %}
+                {% if company_detail.google_plus %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.google_plus }}" class="">
+                            <i class="fa fa-google-plus-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.github %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.github }}">
+                            <i class="fa fa-github-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.linkedin %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.linkedin }}">
+                            <i class="fa fa-linkedin-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.youtube %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.youtube }}">
+                            <i class="fa fa-youtube-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
             <div class="row offset-4">
                 <div class="col-md-12">
                     <div class="Rights-Reserved">
-                        <h6>&copy; 2017 {{ company_detail.name|default:'lipipoint' }} - All Rights Reserved
+                        <h6>&copy; {% now 'Y' %} {{ company_detail.name|default:'lipipoint' }} - All Rights
+                            Reserved
                             <a href="#"><span>Privacy</span></a> /
                             <a href="#"><span>TOS</span></a> /
                             <a href="#"><span>FAQ</span></a></h6>
