@@ -1,0 +1,43 @@
+{% extends '__base.html' %}
+
+
+
+{% block content %}
+    <!-- products Section -->
+    <section id="products">
+        <h1 class="text-center text-white bg-black py-4 my-5">Products</h1>
+        <div class="container">
+            <div class="row">
+                {% if products %}
+                    {% for product in products %}
+                        <div class="col-md-3">
+                            <div class="card">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="card-img-top img-thumbnail border-0 p-0"
+                                         src="{{ product.featured_image.url }}"
+                                         alt="{{ product.name }}">
+                                </a>
+                                <div class="card-footer bg-white text-center">
+                                    <h1 class="h4">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </h1>
+
+                                    {% if product.categories.all %}
+                                        <a href="">
+                                            {{ product.categories.first }}
+                                        </a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <!-- End products Section -->
+{% endblock %}

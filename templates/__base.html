@@ -1,10 +1,221 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>lipipoint</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick-theme.css' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ company_detail.logo.url }}"/>
 
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<section id="main-navigation">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="{{ company_detail.logo.url }}" alt="lipipoint" width="64" height="64"
+                     class="bg-black text-white">
+                {{ company_detail.name|default:'lipipoint' }}
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'product:products' %}">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact-us">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clients">Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#our-team">Our Team</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<div class="container-wrapper">
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+
+    <!-- Contact us section-->
+    <section id="contact-us">
+        <div class="container">
+            <div class="py-5">
+                <h1 class="text-center">Contact Us</h1>
+                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="http://formspree.io/{{ company_detail.email|default:'lipipoing@gmail.com' }}"
+                          method="POST">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="full_name">Full Name:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="name" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="email">Email:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="email" name="email" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="contact_number">Number:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" name="contact_number"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="message">Message:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea class="form-control" rows=5 type="text" name="message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <input type="submit" value="Sumbit" class="form-control btn btn-success">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h1>Drop Line</h1>
+                    <h6> Don't hesitate to contact us</h6>
+                    <hr>
+                    <p><i class="fa fa-envelope fa-2x"> </i>
+                        Email: {{ company_detail.email|default:'lipipoint@gmail.com' }}</p>
+                    <p>
+                        <i class="fa fa-map-marker fa-2x"></i>Address: {{ company_detail.address|default:'Bhaktapur,Nepal' }}
+                    </p>
+                    <p><i class="fa fa-phone fa-2x"></i> Contact: <a href="tel:{{ company_detail.phone1 }}">
+                        {{ company_detail.phone1 }}</a>
+                        {% if company_detail.phone2 %}
+                            , <a href="tel:{{ company_detail.phone2 }}">{{ company_detail.phone2 }}</a>
+                        {% endif %}
+                        {% if company_detail.phone3 %}
+                            , <a href="tel:{{ company_detail.phone3 }}">{{ company_detail.phone3 }}</a>
+                        {% endif %}
+                        {% if company_detail.phone4 %}
+                            , <a href="tel:{{ company_detail.phone4 }}">{{ company_detail.phone4 }}</a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End  contact Section-->
+
+
+    <!--footer-->
+    <section id="footer" class="bg-black">
+        <div class="container p-3">
+            <div class="row offset-4">
+                {% if company_detail.facebook %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.facebok }}" class="">
+                            <i class="fa fa-facebook-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.twitter %}
+
+                    <div class="p-3">
+                        <a href="{{ company_detail.twitter }}" class="">
+                            <i class="fa fa-twitter-square fa-4x"></i>
+                        </a>
+                    </div>
+
+                {% endif %}
+                {% if company_detail.google_plus %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.google_plus }}" class="">
+                            <i class="fa fa-google-plus-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.github %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.github }}">
+                            <i class="fa fa-github-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.linkedin %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.linkedin }}">
+                            <i class="fa fa-linkedin-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                {% if company_detail.youtube %}
+                    <div class="p-3">
+                        <a href="{{ company_detail.youtube }}">
+                            <i class="fa fa-youtube-square fa-4x"></i>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row offset-4">
+                <div class="col-md-12">
+                    <div class="Rights-Reserved">
+                        <h6>&copy; {% now 'Y' %} {{ company_detail.name|default:'lipipoint' }} - All Rights
+                            Reserved
+                            <a href="#"><span>Privacy</span></a> /
+                            <a href="#"><span>TOS</span></a> /
+                            <a href="#"><span>FAQ</span></a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end footer section -->
+</div>
+<script src="{% static 'assets/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/tether/tether.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'assets/slick/slick.min.js' %}"></script>
+{% endblock %}
 </body>
 </html>

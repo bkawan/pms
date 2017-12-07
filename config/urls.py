@@ -17,12 +17,14 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include
+from django.urls import include, path
 
 from apps.core.views import LandingPageView
 
+app_name = 'config'
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^$', LandingPageView.as_view(), name='landing'),
                   url(r'^api/', include('apps.api.urls'), name='api'),
+                  path('products/', include('apps.product.urls', namespace='product')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
