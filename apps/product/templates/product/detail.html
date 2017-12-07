@@ -47,8 +47,8 @@
                             </li>
                             {% if product.images.all %}
                                 {% for image in product.images.all %}
-                                    <li data-thumb="{{ product.image.url }}">
-                                        <img src="{{ product.image.url }}"/>
+                                    <li data-thumb="{{ image.image.url }}">
+                                        <img src="{{ image.image.url }}"/>
                                     </li>
                                 {% endfor %}
                             {% endif %}
