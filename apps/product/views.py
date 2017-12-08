@@ -10,6 +10,11 @@ class ProductListView(ListView) :
     template_name = 'product/list.html'
     context_object_name = 'products'
 
+    def get_context_data(self, **kwargs) :
+        ctx = super().get_context_data(**kwargs)
+        ctx['company_detail'] = CompanyDetail.objects.first()
+        return ctx
+
 
 class ProductDetailView(DetailView) :
     model = Product

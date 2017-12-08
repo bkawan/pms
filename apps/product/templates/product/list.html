@@ -1,21 +1,30 @@
 {% extends '__base.html' %}
 
+{% load thumbnail %}
 
 
 {% block content %}
     <!-- products Section -->
     <section id="products">
-        <h1 class="text-center text-white bg-black py-4 my-5">Products</h1>
+        <h1 class="text-center text-white bg-black py-2">Products</h1>
+        <div class="container">
+            <div class="container">
+                <nav class="breadcrumb p-1 bg-white">
+                    <a class="breadcrumb-item" href="/#home"> <i class="fa fa-home green"></i> home </a>
+                    <a class="breadcrumb-item" href="{% url 'product:products' %}">products</a>
+                </nav>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 {% if products %}
                     {% for product in products %}
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-4">
                             <div class="card">
                                 <a href="{{ product.get_absolute_url }}">
-                                    <img class="card-img-top img-thumbnail border-0 p-0"
-                                         src="{{ product.featured_image.url }}"
-                                         alt="{{ product.name }}">
+                                    <img class="card-img-top"
+                                         src="{{ product.featured_image|thumbnail_url:'product_list' }}"
+                                         alt="{{ product.name }}" width="256" height="180">
                                 </a>
                                 <div class="card-footer bg-white text-center">
                                     <h1 class="h4">
@@ -23,6 +32,7 @@
                                             {{ product.name }}
                                         </a>
                                     </h1>
+                                    <hr>
 
                                     {% if product.categories.all %}
                                         <a href="">

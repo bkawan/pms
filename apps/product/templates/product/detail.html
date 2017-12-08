@@ -1,11 +1,12 @@
 {% extends '__base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static "assets/light-slider/css/lightslider.css" %}"/>
     <style>
         .product-image {
-            width: 100%;
+            width: 600px;
         }
 
         {#        #lightSlider ul {#}
@@ -23,7 +24,8 @@
 
         #lightSlider img {
             display: block;
-            height: auto;
+            height: 400px;
+            width: 600px;
             max-width: 100%;
         }
 
@@ -35,20 +37,29 @@
 {% block content %}
     <!-- products Section -->
     <section id="product-detail">
-        <h1 class="text-center text-white bg-black py-4 my-5">{{ product.name }}
-        </h1>
+
         <div class="container">
+            <nav class="breadcrumb p-1 bg-white">
+                <a class="breadcrumb-item" href="/#home"> <i class="fa fa-home green"></i> home </a>
+                <a class="breadcrumb-item" href="{% url 'product:products' %}">products</a>
+                <a class="breadcrumb-item" href="{{ product.get_absolute_url }}">{{ product.name }} </a>
+            </nav>
+        </div>
+        {#        <h1 class="text-center text-white bg-black py-4 my-5">{{ product.name }}#}
+        {#        </h1>#}
+        <div class="container">
+
             <div class="row">
                 <div class="col-md-7">
                     <div class="product-image">
                         <ul id="lightSlider">
-                            <li data-thumb="{{ product.featured_image.url }}">
-                                <img src="{{ product.featured_image.url }}"/>
+                            <li data-thumb="{{ product.featured_image|thumbnail_url:'product_image_thumb' }}">
+                                <img src="{{ product.featured_image|thumbnail_url:'product_image_slider' }}"/>
                             </li>
                             {% if product.images.all %}
                                 {% for image in product.images.all %}
-                                    <li data-thumb="{{ image.image.url }}">
-                                        <img src="{{ image.image.url }}"/>
+                                    <li data-thumb="{{ image.image|thumbnail_url:'product_image_thumb' }}">
+                                        <img src="{{ image.image|thumbnail_url:'product_image_slider' }}"/>
                                     </li>
                                 {% endfor %}
                             {% endif %}

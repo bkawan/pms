@@ -16,7 +16,7 @@ class ProductCategory(AbstractCategory) :
         verbose_name_plural = _('product categories')
 
 
-class Product(AbstractImageEntry, AbstractCreatedAtUpdatedAt) :
+class Product(AbstractCreatedAtUpdatedAt) :
     """Products."""
 
     company = models.ForeignKey(CompanyDetail, related_name='products', on_delete=models.CASCADE)

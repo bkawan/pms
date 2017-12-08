@@ -27,4 +27,5 @@ urlpatterns = [
                   url(r'^$', LandingPageView.as_view(), name='landing'),
                   url(r'^api/', include('apps.api.urls'), name='api'),
                   path('products/', include('apps.product.urls', namespace='product')),
+                  path('company/', include('apps.company.urls', namespace='company')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

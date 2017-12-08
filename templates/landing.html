@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<section id="main-navigation">
+<section id="main-navigation" class="pb-5 mb-5">
     <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
         <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -71,7 +72,7 @@
                 {% if sliders %}
                     {% for slider in sliders %}
                         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-                            <img src="{{ slider.image.url }}"
+                            <img src="{{ slider.image|thumbnail_url:'banner_slider' }}"
                                  alt="{% if slider.caption %}{{ slider.caption }}{% endif %}" height="600" width="100%">
                             <div class="carousel-caption d-none d-md-block">
                                 {% if slider.caption %}
@@ -111,12 +112,13 @@
                     {% for service in services %}
                         <div class="card border-0">
                             {% if service.icon %}
-                                <img class="card-img-top px-3" src="{{ service.icon.url }}" alt="{{ service.name }}"
-                                     width="120" height="80">
+                                <img class="card-img-top px-3" src="{{ service.icon|thumbnail_url:'100-100' }}"
+                                     alt="{{ service.name }}"
+                                     width="150" height="100">
                             {% elif service.image %}
                                 <img class="card-img-top px-3" src="{{ service.image.url }}" alt="{{ service.name }}"
-                                     width="300"
-                                     height="200">
+                                     width="256"
+                                     height="180">
                             {% else %}
                                 <i class="fa fa-image fa-5x px-3"></i>
                             {% endif %}
@@ -162,17 +164,22 @@
             <div class="row">
                 <div class="col-md-6">
                     {% if company_detail.featured_image %}
-                        <img src="{{ company_detail.featured_image.url }}" alt="{{ company_detail.name }}" width="100%"
-                             height="100%">
+                        <img src="{{ company_detail.featured_image|thumbnail_url:'600-400' }}"
+                             alt="{{ company_detail.name }}" width="100%"
+                             height="400">
                     {% else %}
-
                         <img src="{% static 'assets/images/about-us/about-us.jpg' %}" alt="About lipipoint" width="100%"
                              height="100%">
                     {% endif %}
 
                 </div>
                 <div class="col-md-6">
-                    {{ company_detail.description|safe }}
+
+                    {{ company_detail.description|truncatechars:'1000'|safe }}
+                    <br>
+                    <a href="{% url 'company:about' company_detail.slug %}">Read
+                        more</a>
+
                 </div>
             </div>
         </div>
@@ -182,23 +189,35 @@
     <section id="products">
         <div class="container">
             <div class="py-5">
-                <h1 class="text-center">Our Works</h1>
-                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
-                <p class="text-center">We Do various types of software development and many more,</p>
+                <h1 class="text-center p-0 m-0">Our Products</h1>
+                <p class="text-center p-0 m-0"><i class="fa fa-minus fa-3x p-0 m-0"></i></p>
+                <p class="text-center p-0 m-0"><a href="{% url 'product:products' %}">View All</a></p>
+                <p class=" text-center">We Do various types of products and many more,</p>
             </div>
 
             <div class="row">
                 {% if products %}
                     {% for product in products %}
-                        <div class="col-md-3">
-                            <div class="card border-0">
-                                <img class="card-img-top img-thumbnail"
-                                     src="{{ product.featured_image.url }}"
-                                     alt="{{ product.name }}">
-                                <div class="card-footer bg-white border-0">
-                                    <a href="{{ product.get_absolute_url }}">
-                                        <small class="text-muted">{{ product.name }}</small>
-                                    </a>
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="card-img-top"
+                                         src="{{ product.featured_image|thumbnail_url:'product_list' }}"
+                                         alt="{{ product.name }}" width="256" height="180">
+                                </a>
+                                <div class="card-footer bg-white text-center">
+                                    <h1 class="h4">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </h1>
+                                    <hr>
+
+                                    {% if product.categories.all %}
+                                        <a href="">
+                                            {{ product.categories.first }}
+                                        </a>
+                                    {% endif %}
 
                                 </div>
                             </div>
@@ -211,37 +230,39 @@
     </section>
     <!-- End products Section -->
 
-    <!---  Section -->
-    <section id="expertise" class="bg-black py-5">
-        <div class="container">
-            <div class="pb-2 text-white">
-                <h1 class="text-center">Our Expertise</h1>
-                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
-            </div>
-            <div class="row">
-                <div class="px-4">
-                    <img src="assets/images/expertise/python.svg" alt="python" width="64" height="64">
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!--- End Expertise Section -->
+    {#    <!---  Section -->#}
+    {#    <section id="expertise" class="bg-black py-5">#}
+    {#        <div class="container">#}
+    {#            <div class="pb-2 text-white">#}
+    {#                <h1 class="text-center">Our Expertise</h1>#}
+    {#                <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>#}
+    {#            </div>#}
+    {#            <div class="row">#}
+    {#                <div class="px-4">#}
+    {#                    <img src="assets/images/expertise/python.svg" alt="python" width="64" height="64">#}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    {#    <!--- End Expertise Section -->#}
 
     <!-- Clients -->
-    <section id="clients" class="py-5">
+    <section id="clients" class="py-5 bg-black text-white">
         <div class="container">
             <div class="pb-2">
                 <h1 class="text-center">Our Clients</h1>
                 <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+                <p class="text-center"><a href="{% url 'company:clients' %}">View all</a></p>
             </div>
-            <div class="clients row">
+            <div class=" clients row">
                 {% if clients %}
                     {% for client in clients %}
-                        <div class="card m-5 border-0">
-                            <img class="mx-auto" src="{{ client.logo.url }}" alt="{{ client.name }}"
-                                 width="100%"
-                                 height="100%">
+                        <div class="card m-5 border-0 bg-black">
+                            <img class="mx-auto" src="{{ client.logo|thumbnail_url:"100-100" }}"
+                                 alt="{{ client.name }}"
+                                 width="100"
+                                 height="100">
                             <div class="float-left small py-2">
                                 {% if client.website %}
                                     <a href="{{ client.website }}">{{ client.name }}</a>
@@ -251,7 +272,6 @@
                             </div>
                         </div>
                     {% endfor %}
-
                 {% endif %}
 
             </div>
@@ -268,7 +288,7 @@
             <div class="row m-2">
                 {% for team_member in team_members %}
                     <div class="card border-0 mx-auto">
-                        <img src="{{ team_member.image.url }}" alt="{{ team_member.name }}"
+                        <img src="{{ team_member.image|thumbnail_url:'84-84' }}" alt="{{ team_member.name }}"
                              class="mx-auto card-img-top rounded-circle img-thumbnail" height="120"
                              width="120">
                         <div class="card-text text-center border-0">
@@ -341,7 +361,7 @@
 
 
     <!-- Contact us section-->
-    <section id="contact-us">
+    <section id="contact-us" class="bg-grey-300">
         <div class="container">
             <div class="py-5">
                 <h1 class="text-center">Contact Us</h1>

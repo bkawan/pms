@@ -1,0 +1,41 @@
+{% extends '__base.html' %}
+
+{% load thumbnail %}
+
+
+{% block content %}
+    <!-- clients Section -->
+    <section id="clients">
+        <h1 class="text-center text-white bg-black py-2">Clients</h1>
+        <div class="container">
+            <div class="container">
+                <nav class="breadcrumb p-1 bg-white">
+                    <a class="breadcrumb-item" href="/#home"> <i class="fa fa-home green"></i> home </a>
+                    <a class="breadcrumb-item" href="{% url 'company:clients' %}">clients</a>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class=" clients row">
+                {% if clients %}
+                    {% for client in clients %}
+                        <div class="card m-5 border-0">
+                            <img class="mx-auto" src="{{ client.logo|thumbnail_url:"100-100" }}"
+                                 alt="{{ client.name }}"
+                                 width="100"
+                                 height="100">
+                            <div class="float-left small py-2">
+                                {% if client.website %}
+                                    <a href="{{ client.website }}">{{ client.name }}</a>
+                                {% else %}
+                                    {{ client.name }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- End clients Section -->
+{% endblock %}
