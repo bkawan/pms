@@ -1,7 +1,7 @@
 {% extends '__base.html' %}
 {% load static %}
 {% load thumbnail %}
-
+{% block title %}{{ product.name }}{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{% static "assets/light-slider/css/lightslider.css" %}"/>
     <style>
