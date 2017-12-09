@@ -22,6 +22,7 @@
                     <img src="{{ companydetail.featured_image|thumbnail_url:'600-400' }}"
                          alt="{{ companydetail.name }}" class="float-left p-3" width="600"
                          height="400">
+
                     {{ companydetail.description|safe }}
                 {% else %}
                     <img src="{% static 'assets/images/about-us/about-us.jpg' %}" alt="About lipipoint" width="100%"
