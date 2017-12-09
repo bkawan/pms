@@ -147,6 +147,7 @@ THUMBNAIL_ALIASES = {
         '100-100' : {"size" : (100, 100), 'crop' : False, 'quality' : 90},
         '600-400' : {"size" : (600, 500), 'crop' : False, 'quality' : 90},
         '84-84' : {"size" : (84, 84), 'crop' : False, 'quality' : 90},
+        '64-64' : {"size" : (64, 64), 'crop' : False, 'quality' : 90},
         'product_list' : {"size" : (256, 180), 'crop' : False, 'quality' : 90},
         'product_image_slider' : {"size" : (600, 400), 'crop' : False, 'quality ' : 90},
         'banner_slider' : {"size" : (1400, 600), 'crop' : False, 'quality ' : 90},
