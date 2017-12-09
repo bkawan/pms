@@ -2,6 +2,3 @@
 django-extensions
 django-debug-toolbar
 ipdb
-ipython
-fabric3
-django-extensions

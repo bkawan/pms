@@ -23,9 +23,17 @@ from apps.core.views import LandingPageView
 
 app_name = 'config'
 urlpatterns = [
-                  url(r'^admin/', admin.site.urls),
-                  url(r'^$', LandingPageView.as_view(), name='landing'),
-                  url(r'^api/', include('apps.api.urls'), name='api'),
-                  path('products/', include('apps.product.urls', namespace='product')),
-                  path('company/', include('apps.company.urls', namespace='company')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', LandingPageView.as_view(), name='landing'),
+    url(r'^api/', include('apps.api.urls'), name='api'),
+    path('products/', include('apps.product.urls', namespace='product')),
+    path('company/', include('apps.company.urls', namespace='company')),
+]
+
+if settings.DEBUG :
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    import debug_toolbar
+
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
