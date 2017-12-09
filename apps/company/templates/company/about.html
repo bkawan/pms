@@ -1,0 +1,36 @@
+{% extends '__base.html' %}
+
+{% load static %}
+{% load thumbnail %}
+
+
+{% block content %}
+    <!-- clients Section -->
+    <section id="clients">
+        <h1 class="text-center text-white bg-black py-2">About</h1>
+        <div class="container">
+            <div class="container">
+                <nav class="breadcrumb p-1 bg-white">
+                    <a class="breadcrumb-item" href="/#home"> <i class="fa fa-home green"></i> home </a>
+                    <a class="breadcrumb-item" href="{% url 'company:about' companydetail.slug %}">about</a>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12 pb-3">
+                {% if companydetail.featured_image %}
+                    <img src="{{ companydetail.featured_image|thumbnail_url:'600-400' }}"
+                         alt="{{ companydetail.name }}" class="float-left p-3" width="600"
+                         height="400">
+
+                    {{ companydetail.description|safe }}
+                {% else %}
+                    <img src="{% static 'assets/images/about-us/about-us.jpg' %}" alt="About lipipoint" width="100%"
+                         height="100%">
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <!-- End clients Section -->
+{% endblock %}

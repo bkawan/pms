@@ -1,6 +1,0 @@
-Django
-django-mptt
-django-rest-framework
-Pillow
-markdown
-psycopg2

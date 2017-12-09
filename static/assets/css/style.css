@@ -1,0 +1,52 @@
+.bg-white {
+    background: white;
+}
+
+.border-bottom {
+    border-bottom: 1px solid;
+}
+
+.bg-black {
+    background: black;
+}
+
+.bg-blue-grey {
+    background: #424242;
+}
+
+.bg-twitter {
+    background: #00aced;
+}
+
+.bg-facebook {
+    background: white;
+}
+
+.bg-google-plus {
+    background: #dd4b39;
+}
+
+.bg-twitter {
+    background: #00aced;
+}
+
+.no-display {
+    display: none;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+.bg-shades {
+    background-color: #F6F6F6;
+
+}
+
+.bg-grey-300 {
+    background-color: #E0E0E0;
+
+}
+
+

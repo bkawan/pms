@@ -1,0 +1,56 @@
+{% extends '__base.html' %}
+
+{% load thumbnail %}
+{% block title %}
+    all products at {{ company_detail.name }}
+{% endblock %}
+
+
+{% block content %}
+    <!-- products Section -->
+    <section id="products">
+        <h1 class="text-center text-white bg-black py-2">Products</h1>
+        <div class="container">
+            <div class="container">
+                <nav class="breadcrumb p-1 bg-white">
+                    <a class="breadcrumb-item" href="/#home"> <i class="fa fa-home green"></i> home </a>
+                    <a class="breadcrumb-item" href="{% url 'product:products' %}">products</a>
+                </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% if products %}
+                    {% for product in products %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="card-img-top"
+                                         src="{{ product.featured_image|thumbnail_url:'product_list' }}"
+                                         alt="{{ product.name }}" width="256" height="180">
+                                </a>
+                                <div class="card-footer bg-white text-center">
+                                    <h1 class="h4">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </h1>
+                                    <hr>
+
+                                    {% if product.categories.all %}
+                                        <a href="">
+                                            {{ product.categories.first }}
+                                        </a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <!-- End products Section -->
+{% endblock %}

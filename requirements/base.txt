@@ -1,0 +1,5 @@
+Django
+django-mptt
+django-rest-framework
+Pillow
+psycopg2
