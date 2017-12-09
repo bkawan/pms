@@ -10,6 +10,11 @@ class ProductListView(ListView) :
     template_name = 'product/list.html'
     context_object_name = 'products'
 
+    def get_queryset(self) :
+        qs = super().get_queryset()
+        qs = qs.prefetch_related('categories')
+        return qs
+
     def get_context_data(self, **kwargs) :
         ctx = super().get_context_data(**kwargs)
         ctx['company_detail'] = CompanyDetail.objects.first()
@@ -25,3 +30,8 @@ class ProductDetailView(DetailView) :
         ctx = super().get_context_data(**kwargs)
         ctx['company_detail'] = CompanyDetail.objects.first()
         return ctx
+
+    def get_queryset(self) :
+        qs = super().get_queryset()
+        qs = qs.prefetch_related('categories')
+        return qs
