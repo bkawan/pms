@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 # Create your models here.
 from django.db.models import TextField
+from django.utils.safestring import mark_safe
 
 from apps.core.models import AbstractImageEntry, AbstractCreatedAtUpdatedAt, AbstractCategory
 from apps.core.utils import image_upload_to, unique_slugify
@@ -123,3 +124,9 @@ class Client(models.Model) :
     def __str__(self) :
         """Return client name."""
         return self.name
+
+    def image_tag(self) :
+        # used in the admin site model as a "thumbnail"
+        return mark_safe('<img src="{}" width="84" height="84" />'.format(self.logo.url))
+
+    image_tag.short_description = 'Logo'

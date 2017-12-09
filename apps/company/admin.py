@@ -5,9 +5,7 @@ from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, 
     Client
 
 admin.site.register(HomePageTopImageSlider)
-admin.site.register(TeamMember)
 admin.site.register(Testimonial)
-admin.site.register(Client)
 
 
 class CompanyDetailAdmin(admin.ModelAdmin) :
@@ -30,5 +28,16 @@ class ServiceAdmin(admin.ModelAdmin) :
         return True
 
 
+class ClientAdmin(admin.ModelAdmin) :
+    list_display = ('name', 'image_tag', 'email', 'phone', 'website')
+
+
+class TeamMemberAdmin(admin.ModelAdmin) :
+    list_display = ('name', 'email', 'phone')
+
+
+admin.site.register(TeamMember, TeamMemberAdmin)
+
+admin.site.register(Client, ClientAdmin)
 admin.site.register(CompanyDetail, CompanyDetailAdmin)
 admin.site.register(Service, ServiceAdmin)

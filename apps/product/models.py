@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -39,6 +40,12 @@ class Product(AbstractCreatedAtUpdatedAt) :
     def get_absolute_url(self) :
         return reverse('product:detail', args=[str(self.slug)])
 
+    def image_tag(self) :
+        # used in the admin site model as a "thumbnail"
+        return mark_safe('<img src="{}" width="84" height="84" />'.format(self.featured_image.url))
+
+    image_tag.short_description = 'Featured Image'
+
 
 class ProductImage(AbstractCreatedAtUpdatedAt, AbstractImageEntry) :
     """Product's Images."""
@@ -46,4 +53,10 @@ class ProductImage(AbstractCreatedAtUpdatedAt, AbstractImageEntry) :
 
     def __str__(self) :
         """Return product name of the image."""
-        return '{} - {}'.format(self.product, self.image_title)
+        return '{} - {}'.format(self.product, self.image_title if self.image_title else '')
+
+    def image_tag(self) :
+        # used in the admin site model as a "thumbnail"
+        return mark_safe('<img src="{}" width="84" height="84" />'.format(self.image.url))
+
+    image_tag.short_description = 'Image'
