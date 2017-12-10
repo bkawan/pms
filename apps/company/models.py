@@ -8,7 +8,7 @@ from apps.core.models import AbstractImageEntry, AbstractCreatedAtUpdatedAt, Abs
 from apps.core.utils import image_upload_to, unique_slugify
 
 
-class CompanyDetail(models.Model) :
+class CompanyDetail(models.Model):
     """Company Profile."""
 
     user = models.OneToOneField(
@@ -32,16 +32,16 @@ class CompanyDetail(models.Model) :
     linkedin = models.URLField(null=True, blank=True)
     slug = models.SlugField(unique=True)
 
-    def __str__(self) :
+    def __str__(self):
         """Return name of the Company."""
         return self.name
 
-    def save(self, *args, **kwargs) :
+    def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
         super().save(*args, **kwargs)
 
 
-class TeamMember(models.Model) :
+class TeamMember(models.Model):
     """Store Team Member profile."""
 
     company = models.ForeignKey(CompanyDetail, related_name='team_members', on_delete=models.CASCADE, null=True)
@@ -57,12 +57,12 @@ class TeamMember(models.Model) :
     linkedin = models.URLField(null=True, blank=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
 
-    def __str__(self) :
+    def __str__(self):
         """Store Team Members."""
         return self.name
 
 
-class Service(AbstractImageEntry, AbstractCreatedAtUpdatedAt) :
+class Service(AbstractImageEntry, AbstractCreatedAtUpdatedAt):
     """Service of the company."""
 
     company = models.ForeignKey(CompanyDetail, related_name='services', on_delete=models.CASCADE)
@@ -71,16 +71,16 @@ class Service(AbstractImageEntry, AbstractCreatedAtUpdatedAt) :
     icon = models.ImageField(upload_to=image_upload_to, null=True, blank=True)
     slug = models.SlugField(unique=True, max_length=255)
 
-    def __str__(self) :
+    def __str__(self):
         """Return service name."""
         return self.name
 
-    def save(self, *args, **kwargs) :
+    def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
         super().save(*args, **kwargs)
 
 
-class Testimonial(AbstractCreatedAtUpdatedAt) :
+class Testimonial(AbstractCreatedAtUpdatedAt):
     """Testimonial of the company."""
 
     company = models.ForeignKey(CompanyDetail, related_name='testimonials', on_delete=models.CASCADE)
@@ -90,7 +90,7 @@ class Testimonial(AbstractCreatedAtUpdatedAt) :
     designation = models.CharField(max_length=100)
     text = models.CharField(max_length=255)
 
-    def __str__(self) :
+    def __str__(self):
         return self.name
 
         # def save(self, *args, **kwargs):
@@ -98,20 +98,21 @@ class Testimonial(AbstractCreatedAtUpdatedAt) :
         #     super().save(*args, **kwargs)
 
 
-class HomePageTopImageSlider(models.Model) :
+class HomePageTopImageSlider(models.Model):
     """Top Banner Image Slider."""
 
-    company = models.ForeignKey(CompanyDetail, related_name='sliders', on_delete=models.CASCADE)
+    company = models.ForeignKey(CompanyDetail, related_name='sliders', on_delete=models.CASCADE,
+                                default=CompanyDetail.objects.first())
     caption = models.CharField(max_length=30, blank=True, null=True)
     image = models.ImageField(upload_to=image_upload_to)
     description = models.CharField(max_length=80, blank=True, null=True)
 
-    def __str__(self) :
+    def __str__(self):
         """Return image object."""
         return self.caption
 
 
-class Client(models.Model) :
+class Client(models.Model):
     """Stores Client Basic Profile."""
 
     company = models.ForeignKey(CompanyDetail, related_name='clients', on_delete=models.CASCADE)
@@ -121,11 +122,11 @@ class Client(models.Model) :
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
 
-    def __str__(self) :
+    def __str__(self):
         """Return client name."""
         return self.name
 
-    def image_tag(self) :
+    def image_tag(self):
         # used in the admin site model as a "thumbnail"
         return mark_safe('<img src="{}" width="84" height="84" />'.format(self.logo.url))
 
