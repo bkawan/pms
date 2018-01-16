@@ -10,7 +10,7 @@ class LandingPageView(TemplateView) :
 
     def get_context_data(self, **kwargs) :
         ctx = super().get_context_data(**kwargs)
-        company = CompanyDetail.objects.first()
+        company = CompanyDetail.objects.last()
         ctx['company_detail'] = company
         ctx['sliders'] = HomePageTopImageSlider.objects.filter(company=company)
         ctx['services'] = Service.objects.filter(company=company)

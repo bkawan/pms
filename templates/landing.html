@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'assets/slick/slick-theme.css' %}"/>
-    <link rel="shortcut icon" type="image/png" href="{{ company_detail.logo.url }}"/>
-
+    {% if company_detail.logo %}
+        <link rel="shortcut icon" type="image/png" href="{{ company_detail.logo.url }}"/>
+    {% endif %}
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -25,8 +26,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="{{ company_detail.logo|thumbnail_url:'64-64'}}" alt="lipipoint" width="64" height="64"
-                     class="text-white">
+                {% if company_detail.logo %}
+                    <img src="{{ company_detail.logo|thumbnail_url:'64-64' }}" alt="lipipoint" width="64" height="64"
+                         class="text-white">
+                {% endif %}
                 {{ company_detail.name|default:'lipipoint' }}
             </a>
 

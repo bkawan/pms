@@ -101,8 +101,7 @@ class Testimonial(AbstractCreatedAtUpdatedAt):
 class HomePageTopImageSlider(models.Model):
     """Top Banner Image Slider."""
 
-    company = models.ForeignKey(CompanyDetail, related_name='sliders', on_delete=models.CASCADE,
-                                default=CompanyDetail.objects.first())
+    company = models.ForeignKey(CompanyDetail, related_name='sliders', on_delete=models.CASCADE)
     caption = models.CharField(max_length=30, blank=True, null=True)
     image = models.ImageField(upload_to=image_upload_to)
     description = models.CharField(max_length=80, blank=True, null=True)
