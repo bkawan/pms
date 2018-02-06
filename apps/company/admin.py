@@ -11,20 +11,21 @@ admin.site.register(Testimonial)
 class CompanyDetailAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ('name', 'email', 'address', 'phone1', 'user')
-    prepopulated_fields = {'slug':('name',)}
-
-    # readonly_fields = ('slug',)
+    exclude = ('slug',)
 
     def has_add_permission(self, request):
+        if request.user.is_superuser:
+            return True
         return False
 
     def has_delete_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
         return False
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    fields = ['company', 'name', 'description', 'image', 'icon', 'slug']
-    prepopulated_fields = {'slug':('name',)}
+    exclude = ('slug',)
     autocomplete_fields = ['company']
 
     def has_add_permission(self, request):
