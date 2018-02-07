@@ -4,3 +4,4 @@ django-rest-framework
 Pillow
 psycopg2
 easy_thumbnails
+django-filter

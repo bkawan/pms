@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     # 'sorl.thumbnail',
     'easy_thumbnails',
+    'django_filters'
 ]
 
 INSTALLED_APPS = LOCAL_APPS + INSTALLED_APPS + THIRD_PARTY_APPS
@@ -62,13 +63,13 @@ ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
-        'BACKEND' : 'django.template.backends.django.DjangoTemplates',
-        'DIRS' : [
+        'BACKEND':'django.template.backends.django.DjangoTemplates',
+        'DIRS':[
             os.path.join(BASE_DIR, '..', 'templates'),
         ],
-        'APP_DIRS' : True,
-        'OPTIONS' : {
-            'context_processors' : [
+        'APP_DIRS':True,
+        'OPTIONS':{
+            'context_processors':[
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -87,12 +88,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default' : {
-        'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'pmsnew',
-        'USER' : '',
-        'PASSWORD' : '',
-        'HOST' : 'localhost'
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'pmsnew',
+        'USER':'',
+        'PASSWORD':'',
+        'HOST':'localhost'
 
     }
 }
@@ -102,16 +103,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME' : 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME' : 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME' : 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME' : 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -142,16 +143,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', '..', 'media')
 MEDIA_URL = '/media/'
 THUMBNAIL_ALIASES = {
-    '' : {
-        'product_image_thumb' : {"size" : (64, 64), 'crop' : False, 'quality' : 90},
-        '100-100' : {"size" : (100, 100), 'crop' : False, 'quality' : 90},
-        '600-400' : {"size" : (600, 500), 'crop' : False, 'quality' : 90},
-        '84-84' : {"size" : (84, 84), 'crop' : False, 'quality' : 90},
-        '120-120' : {"size" : (120,120), 'crop' : False, 'quality' : 90},
-        '64-64' : {"size" : (64, 64), 'crop' : False, 'quality' : 90},
-        'product_list' : {"size" : (256, 180), 'crop' : False, 'quality' : 90},
-        'product_image_slider' : {"size" : (600, 400), 'crop' : False, 'quality ' : 90},
-        'banner_slider' : {"size" : (1400, 600), 'crop' : False, 'quality ' : 90},
+    '':{
+        'product_image_thumb':{"size":(64, 64), 'crop':False, 'quality':90},
+        '100-100':{"size":(100, 100), 'crop':False, 'quality':90},
+        '600-400':{"size":(600, 500), 'crop':False, 'quality':90},
+        '84-84':{"size":(84, 84), 'crop':False, 'quality':90},
+        '120-120':{"size":(120, 120), 'crop':False, 'quality':90},
+        '64-64':{"size":(64, 64), 'crop':False, 'quality':90},
+        'product_list':{"size":(256, 180), 'crop':False, 'quality':90},
+        'product_image_slider':{"size":(600, 400), 'crop':False, 'quality ':90},
+        'banner_slider':{"size":(1400, 600), 'crop':False, 'quality ':90},
 
     },
 }
