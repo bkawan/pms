@@ -1,10 +1,16 @@
 from django.contrib import admin
 
 # Register your models here.
-from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, TeamMember, Testimonial, \
-    Client
+from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, TeamMember, Client
 
-admin.site.register(HomePageTopImageSlider)
+
+class HomePageTopImageSliderAdmin(admin.ModelAdmin):
+    list_display = ['image_tag']
+
+
+admin.site.register(HomePageTopImageSlider, HomePageTopImageSliderAdmin)
+
+
 # admin.site.register(Testimonial)
 
 

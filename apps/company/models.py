@@ -108,7 +108,13 @@ class HomePageTopImageSlider(models.Model):
 
     def __str__(self):
         """Return image object."""
-        return self.caption
+        return str(self.image.name)
+
+    def image_tag(self):
+        # used in the admin site model as a "thumbnail"
+        return mark_safe('<img src="{}" width="84" height="84" />'.format(self.image.url))
+
+    image_tag.short_description = 'Slider'
 
 
 class Client(models.Model):
