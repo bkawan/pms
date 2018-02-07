@@ -27,7 +27,11 @@
             </button>
             <a class="navbar-brand" href="#">
                 {% if company_detail.logo %}
-                    <img src="{{ company_detail.logo|thumbnail_url:'64-64' }}" alt="lipipoint" width="64" height="64"
+                    <img src="{{ company_detail.logo|thumbnail_url:'64-64' }}" alt="{{ company_detail.name }}"
+                         width="64" height="64"
+                         class="text-white">
+                {% else %}
+                    <img src="{% static 'assets/images/default/lipipoint.png' %}" alt="lipipoint" width="64" height="64"
                          class="text-white">
                 {% endif %}
                 {{ company_detail.name|default:'lipipoint' }}

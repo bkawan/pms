@@ -14,13 +14,9 @@ class CompanyDetailAdmin(admin.ModelAdmin):
     exclude = ('slug',)
 
     def has_add_permission(self, request):
-        if request.user.is_superuser:
-            return True
         return False
 
     def has_delete_permission(self, request, obj=None):
-        if request.user.is_superuser:
-            return True
         return False
 
 
