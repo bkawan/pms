@@ -4,7 +4,7 @@ from django_filters.views import FilterView
 
 from apps.company.models import CompanyDetail
 from apps.product.filters import ProductFilter
-from apps.product.models import Product
+from apps.product.models import Product, ProductCategory
 
 
 class ProductListView(FilterView):
@@ -22,6 +22,9 @@ class ProductListView(FilterView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx['company_detail'] = CompanyDetail.objects.first()
+        ctx['categories'] = ProductCategory.objects.all()
+        ctx['brands'] = Product.objects.filter(brand__isnull=False).values_list('brand', flat=True).distinct().order_by(
+            'brand')
         return ctx
 
 

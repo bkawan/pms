@@ -72,7 +72,7 @@
                         {% if product.brand %}
                             <tr>
                                 <td>Brand:</td>
-                                <td>{{ product.brand }}</td>
+                                <td><a href="/products/?brand={{ product.brand }}">{{ product.brand }}</a></td>
                             </tr>
                         {% endif %}
                         {% if product.categories.all %}
@@ -82,7 +82,7 @@
                                 </td>
                                 <td>
                                     {% for category in product.categories.all %}
-                                        <a href="{{ category.get_absolute_url }}">{{ category.title }} </a>
+                                        <a href="/products/?category={{ category.title }}">{{ category.title }} </a>
                                     {% endfor %}
                                 </td>
                             </tr>

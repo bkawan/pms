@@ -60,3 +60,7 @@
 .products:hover {
     background-color: #E0E0E0;
 }
+
+.active a {
+    color: white;
+}
