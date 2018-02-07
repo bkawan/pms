@@ -93,3 +93,11 @@ class AbstractImageEntry(models.Model):
 
     class Meta:
         abstract = True
+
+
+class TagLine(models.Model):
+    client = models.CharField(max_length=255, blank=True, null=True)
+    product = models.CharField(max_length=255, blank=True, null=True)
+    service = models.CharField(max_length=255, blank=True, null=True)
+    team_member = models.CharField(max_length=255, blank=True, null=True)
+    company_detail = models.CharField(max_length=255, blank=True, null=True)

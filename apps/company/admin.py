@@ -5,7 +5,7 @@ from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, 
     Client
 
 admin.site.register(HomePageTopImageSlider)
-admin.site.register(Testimonial)
+# admin.site.register(Testimonial)
 
 
 class CompanyDetailAdmin(admin.ModelAdmin):
