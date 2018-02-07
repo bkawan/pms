@@ -271,7 +271,7 @@
                     {{ tag_line.client|default:'Awesome Clients' }}
                 </p>
             </div>
-            <div class="row">
+            <div class="clients-logo row">
                 {% if clients %}
                     {% for client in clients %}
                         <div class="card m-5 border-0 bg-black">
@@ -399,7 +399,7 @@
 
 <!--<script data-cfasync="false" type="text/javascript" src="assets/js/form-submission-handler.js"></script>-->
 <script>
-    $('.clients').slick({
+    $('.clients-logo').slick({
         dots: true,
         infinite: true,
         speed: 2000,
