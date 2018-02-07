@@ -16,10 +16,10 @@
             </div>
         </div>
         <div class="container">
-            <div class=" clients row">
+            <div class="row">
                 {% if clients %}
                     {% for client in clients %}
-                        <div class="card m-5 border-0">
+                        <div class="card p-3 m-3 border-0 clients">
                             <img class="mx-auto" src="{{ client.logo|thumbnail_url:"100-100" }}"
                                  alt="{{ client.name }}"
                                  width="100"
