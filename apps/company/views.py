@@ -2,20 +2,16 @@
 from django.views.generic import ListView, DetailView
 
 from apps.company.models import Client, CompanyDetail
+from apps.core.mixins import CompanyDetailContextDataMixin
 
 
-class ClientListView(ListView) :
+class ClientListView(CompanyDetailContextDataMixin, ListView):
     model = Client
     template_name = 'company/clients.html'
     context_object_name = 'clients'
 
-    def get_context_data(self, **kwargs) :
-        ctx = super().get_context_data(**kwargs)
-        ctx['company_detail'] = CompanyDetail.objects.first()
-        return ctx
 
-
-class CompanyDetailView(DetailView) :
+class CompanyDetailView(CompanyDetailContextDataMixin, DetailView):
     model = CompanyDetail
     template_name = 'company/about.html'
     slug_field = 'slug'
