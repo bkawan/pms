@@ -7,7 +7,7 @@ SECRET_KEY = 'xxsadfxsdfsdafsdfx'
 DATABASES = {
     'default' : {
         'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'pms2',
+        'NAME' : 'pms3',
         'USER' : '',
         'PASSWORD' : '',
         'HOST' : 'localhost',  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
