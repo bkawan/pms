@@ -1,6 +1,7 @@
 from django.contrib import admin
-
 # Register your models here.
+from django_summernote.admin import SummernoteModelAdmin
+
 from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, TeamMember, Client
 
 
@@ -14,7 +15,8 @@ admin.site.register(HomePageTopImageSlider, HomePageTopImageSliderAdmin)
 # admin.site.register(Testimonial)
 
 
-class CompanyDetailAdmin(admin.ModelAdmin):
+class CompanyDetailAdmin(SummernoteModelAdmin):
+    summer_note_fields = '__all__'
     search_fields = ['name']
     list_display = ('name', 'email', 'address', 'phone1', 'user')
     exclude = ('slug',)

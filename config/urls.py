@@ -23,6 +23,8 @@ from apps.core.views import LandingPageView
 
 app_name = 'config'
 urlpatterns = [
+    url(r'^summernote/', include('django_summernote.urls')),
+
     url(r'^admin/', admin.site.urls),
     url(r'^$', LandingPageView.as_view(), name='landing'),
     url(r'^api/', include('apps.api.urls'), name='api'),

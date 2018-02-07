@@ -45,7 +45,8 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     # 'sorl.thumbnail',
     'easy_thumbnails',
-    'django_filters'
+    'django_filters',
+    'django_summernote',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + INSTALLED_APPS + THIRD_PARTY_APPS

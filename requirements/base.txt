@@ -5,3 +5,4 @@ Pillow
 psycopg2
 easy_thumbnails
 django-filter
+django-summernote
