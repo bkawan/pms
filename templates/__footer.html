@@ -1,0 +1,59 @@
+<div class="container p-3">
+    <div class="row offset-4">
+        {% if company_detail.facebook %}
+            <div class="p-3">
+                <a href="{{ company_detail.facebok }}" class="">
+                    <i class="fa fa-facebook-square fa-4x"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if company_detail.twitter %}
+
+            <div class="p-3">
+                <a href="{{ company_detail.twitter }}" class="">
+                    <i class="fa fa-twitter-square fa-4x"></i>
+                </a>
+            </div>
+
+        {% endif %}
+        {% if company_detail.google_plus %}
+            <div class="p-3">
+                <a href="{{ company_detail.google_plus }}" class="">
+                    <i class="fa fa-google-plus-square fa-4x"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if company_detail.github %}
+            <div class="p-3">
+                <a href="{{ company_detail.github }}">
+                    <i class="fa fa-github-square fa-4x"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if company_detail.linkedin %}
+            <div class="p-3">
+                <a href="{{ company_detail.linkedin }}">
+                    <i class="fa fa-linkedin-square fa-4x"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if company_detail.youtube %}
+            <div class="p-3">
+                <a href="{{ company_detail.youtube }}">
+                    <i class="fa fa-youtube-square fa-4x"></i>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row offset-4">
+        <div class="col-md-12">
+            <div class="Rights-Reserved">
+                <h6>&copy; {% now 'Y' %} {{ company_detail.name|default:'lipipoint' }} - All Rights
+                    Reserved
+                    <a href="#"><span>Privacy</span></a> /
+                    <a href="#"><span>TOS</span></a> /
+                    <a href="#"><span>FAQ</span></a></h6>
+            </div>
+        </div>
+    </div>
+</div>

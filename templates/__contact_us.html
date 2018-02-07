@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="py-5">
+        <h1 class="text-center">Contact Us</h1>
+        <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="http://formspree.io/{{ company_detail.email|default:'lipipoing@gmail.com' }}"
+                  method="POST">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="full_name">Full Name:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" name="name" required/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="email" name="email" required/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="contact_number">Number:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" name="contact_number"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="message">Message:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows=5 type="text" name="message" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <input type="submit" value="Sumbit" class="form-control btn btn-success">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h1>Drop Line</h1>
+            <h6> Don't hesitate to contact us</h6>
+            <hr>
+            <p><i class="fa fa-envelope text-success"></i>
+                Email:
+                <a href="mailto:{{ company_detail.email|default:'lipipoint@gmail.com' }}">
+                    {{ company_detail.email|default:'lipipoint@gmail.com' }}</a>
+            <p>
+                <i class="fa fa-map-marker text-success"></i>Address: {{ company_detail.address|default:'Bhaktapur,Nepal' }}
+            </p>
+            <p><i class="fa fa-phone text-success"></i> Contact: <a href="tel:{{ company_detail.phone1 }}">
+                {{ company_detail.phone1 }}</a>
+                {% if company_detail.phone2 %}
+                    , <a href="tel:{{ company_detail.phone2 }}">{{ company_detail.phone2 }}</a>
+                {% endif %}
+                {% if company_detail.phone3 %}
+                    , <a href="tel:{{ company_detail.phone3 }}">{{ company_detail.phone3 }}</a>
+                {% endif %}
+                {% if company_detail.phone4 %}
+                    , <a href="tel:{{ company_detail.phone4 }}">{{ company_detail.phone4 }}</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
