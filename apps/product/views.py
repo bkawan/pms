@@ -9,6 +9,7 @@ class ProductListView(ListView) :
     model = Product
     template_name = 'product/list.html'
     context_object_name = 'products'
+    ordering = ('-id')
 
     def get_queryset(self) :
         qs = super().get_queryset()

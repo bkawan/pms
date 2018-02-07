@@ -16,6 +16,6 @@ class LandingPageView(TemplateView) :
         ctx['services'] = Service.objects.filter(company=company)
         ctx['team_members'] = TeamMember.objects.filter(company=company)
         ctx['clients'] = Client.objects.filter(company=company)
-        products = Product.objects.filter(company=company).prefetch_related('categories')
+        products = Product.objects.filter(company=company).prefetch_related('categories').order_by('-id')
         ctx['products'] = products[:8]
         return ctx
