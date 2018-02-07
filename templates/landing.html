@@ -428,12 +428,14 @@
                     <h1>Drop Line</h1>
                     <h6> Don't hesitate to contact us</h6>
                     <hr>
-                    <p><i class="fa fa-envelope fa-2x"> </i>
-                        Email: {{ company_detail.email|default:'lipipoint@gmail.com' }}</p>
+                    <p><i class="fa fa-envelope text-success"></i>
+                        Email:
+                        <a href="mailto:{{ company_detail.email|default:'lipipoint@gmail.com' }}">
+                            {{ company_detail.email|default:'lipipoint@gmail.com' }}</a>
                     <p>
-                        <i class="fa fa-map-marker fa-2x"></i>Address: {{ company_detail.address|default:'Bhaktapur,Nepal' }}
+                        <i class="fa fa-map-marker text-success"></i>Address: {{ company_detail.address|default:'Bhaktapur,Nepal' }}
                     </p>
-                    <p><i class="fa fa-phone fa-2x"></i> Contact: <a href="tel:{{ company_detail.phone1 }}">
+                    <p><i class="fa fa-phone text-success"></i> Contact: <a href="tel:{{ company_detail.phone1 }}">
                         {{ company_detail.phone1 }}</a>
                         {% if company_detail.phone2 %}
                             , <a href="tel:{{ company_detail.phone2 }}">{{ company_detail.phone2 }}</a>
