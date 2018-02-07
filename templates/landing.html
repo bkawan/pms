@@ -113,23 +113,22 @@
                 <p class="text-center"><i class="fa fa-minus fa-3x"></i></p>
                 <p class="text-center">We Do various types of software development and many more,</p>
             </div>
-
             <div class="card-group">
                 {% if services %}
                     {% for service in services %}
-                        <div class="card border-0">
+                        <div class="card border-0 p-1 services">
                             {% if service.icon %}
-                                <img class="card-img-top px-3" src="{{ service.icon|thumbnail_url:'100-100' }}"
+                                <img class="card-img-top p-1" src="{{ service.icon|thumbnail_url:'100-100' }}"
                                      alt="{{ service.name }}"
                                      width="150" height="100">
                             {% elif service.image %}
-                                <img class="card-img-top px-3" src="{{ service.image.url }}" alt="{{ service.name }}"
+                                <img class="card-img-top p-1" src="{{ service.image.url }}" alt="{{ service.name }}"
                                      width="256"
                                      height="180">
                             {% else %}
                                 <i class="fa fa-image fa-5x px-3"></i>
                             {% endif %}
-                            <div class="card-block">
+                            <div class="card-block p-1 m-0">
                                 <h4 class="card-title h5">{{ service.name }}</h4>
                                 <p class="card-text"> {{ service.description }}</p>
                             </div>
@@ -295,7 +294,7 @@
             <div class="row m-2">
                 {% for team_member in team_members %}
                     <div class="col-md-2 pb-4">
-                        <div class="card border-0 mx-auto">
+                        <div class="card border-0 mx-auto team-members">
                             <img src="{{ team_member.image|thumbnail_url:'120-120' }}" alt="{{ team_member.name }}"
                                  class="mx-auto card-img-top rounded-circle" height="120"
                                  width="120">
