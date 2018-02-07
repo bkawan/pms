@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +28,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="{{ company_detail.logo.url }}" alt="lipipoint" width="64" height="64"
-                     class="bg-black text-white">
+                {% if company_detail.logo %}
+                    <img src="{{ company_detail.logo|thumbnail_url:'64-64' }}" alt="{{ company_detail.name }}"
+                         width="64" height="64"
+                         class="text-white">
+                {% else %}
+                    <img src="{% static 'assets/images/default/lipipoint.png' %}" alt="lipipoint" width="64" height="64"
+                         class="text-white">
+                {% endif %}
                 {{ company_detail.name|default:'lipipoint' }}
             </a>
 
