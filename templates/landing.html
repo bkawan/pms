@@ -270,13 +270,13 @@
                                  alt="{{ client.name }}"
                                  width="100"
                                  height="100">
-{#                            <div class="float-left small p-0 m-0">#}
-{#                                {% if client.website %}#}
-{#                                    <a href="{{ client.website }}">{{ client.name }}</a>#}
-{#                                {% else %}#}
-{#                                    {{ client.name }}#}
-{#                                {% endif %}#}
-{#                            </div>#}
+                            {#                            <div class="float-left small p-0 m-0">#}
+                            {#                                {% if client.website %}#}
+                            {#                                    <a href="{{ client.website }}">{{ client.name }}</a>#}
+                            {#                                {% else %}#}
+                            {#                                    {{ client.name }}#}
+                            {#                                {% endif %}#}
+                            {#                            </div>#}
                         </div>
                     {% endfor %}
                 {% endif %}
@@ -294,32 +294,38 @@
             </div>
             <div class="row m-2">
                 {% for team_member in team_members %}
-                    <div class="card border-0 mx-auto">
-                        <img src="{{ team_member.image|thumbnail_url:'84-84' }}" alt="{{ team_member.name }}"
-                             class="mx-auto card-img-top rounded-circle img-thumbnail" height="120"
-                             width="120">
-                        <div class="card-text text-center border-0">
-                            <h5 class="card-title p-0 m-0">
-                                {{ team_member.name }}
-                            </h5>
-                            <p class="card-text small text-center p-0 m-0">
-                                {{ team_member.designation }}
-                            </p>
-                            <p class="card-text text-center">
-                                {% if team_member.facebook %}
-                                    <a href="{{ team_member.facebook }}"><i class="fa fa-facebook"></i></a>
-                                {% endif %}
-                                {% if team_member.twitter %}
+                    <div class="col-md-2 pb-4">
+                        <div class="card border-0 mx-auto">
+                            <img src="{{ team_member.image|thumbnail_url:'120-120' }}" alt="{{ team_member.name }}"
+                                 class="mx-auto card-img-top rounded-circle" height="120"
+                                 width="120">
+                            <div class="card-text text-center border-0">
+                                <h5 class="card-title p-0 m-0">
+                                    {{ team_member.name }}
+                                </h5>
+                                <p class="card-text small text-center p-0 m-0">
+                                    {{ team_member.designation }}
+                                </p>
+                                <p class="card-text text-center">
+                                    {% if team_member.facebook %}
+                                        <a href="{{ team_member.facebook }}"><i class="fa fa-facebook"></i></a>
+                                    {% endif %}
+                                    {% if team_member.twitter %}
 
-                                    <a href="{{ team_member.twitter }}"><i class="fa fa-twitter"></i></a>
-                                {% endif %}
-                                {% if team_member.google_plus %}
-                                    <a href="{{ team_member.google_plus }}"><i class="fa fa-google-plus"></i></a>
-                                {% endif %}
-                                {% if team_member.linkedin %}
-                                    <a href="{{ team_member.linkedin }}"><i class="fa fa-linkedin"></i></a>
-                                {% endif %}
-                            </p>
+                                        <a href="{{ team_member.twitter }}"><i class="fa fa-twitter"></i></a>
+                                    {% endif %}
+                                    {% if team_member.google_plus %}
+                                        <a href="{{ team_member.google_plus }}"><i class="fa fa-google-plus"></i></a>
+                                    {% endif %}
+                                    {% if team_member.linkedin %}
+                                        <a href="{{ team_member.linkedin }}"><i class="fa fa-linkedin"></i></a>
+                                    {% endif %}
+                                    {% if team_member.youtube %}
+                                        <a href="{{ team_member.youtube }}"><i class="fa fa-youtube"></i></a>
+                                    {% endif %}
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
