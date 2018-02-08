@@ -4,3 +4,5 @@ DEBUG = False
 SECRET_KEY = 'xyasldkfjasd'
 
 ALLOWED_HOSTS = ['lipipoint.com']
+
+

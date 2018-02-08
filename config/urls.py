@@ -22,6 +22,10 @@ from django.urls import include, path
 from apps.core.views import LandingPageView
 
 app_name = 'config'
+try:
+    admin.site.site_header = settings.SITE_HEADER
+except AttributeError:
+    pass
 urlpatterns = [
     url(r'^summernote/', include('django_summernote.urls')),
 
@@ -32,7 +36,7 @@ urlpatterns = [
     path('company/', include('apps.company.urls', namespace='company')),
 ]
 
-if settings.DEBUG :
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     import debug_toolbar
 

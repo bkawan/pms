@@ -3,4 +3,5 @@
 *.pyc
 media
 venv/
+staticfiles/
 config/settings/env.py
