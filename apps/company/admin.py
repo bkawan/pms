@@ -6,6 +6,7 @@ from apps.company.models import CompanyDetail, Service, HomePageTopImageSlider, 
 
 
 class HomePageTopImageSliderAdmin(admin.ModelAdmin):
+    exclude = ('company',)
     list_display = ['image_tag']
 
 
@@ -29,8 +30,7 @@ class CompanyDetailAdmin(SummernoteModelAdmin):
 
 
 class ServiceAdmin(admin.ModelAdmin):
-    exclude = ('slug',)
-    autocomplete_fields = ['company']
+    exclude = ('slug', 'company')
 
     def has_add_permission(self, request):
         if Service.objects.count() == 4:
@@ -39,10 +39,12 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 class ClientAdmin(admin.ModelAdmin):
+    exclude = ('company',)
     list_display = ('name', 'image_tag', 'email', 'phone', 'website')
 
 
 class TeamMemberAdmin(admin.ModelAdmin):
+    exclude = ('company',)
     list_display = ('name', 'email', 'phone')
 
 

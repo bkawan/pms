@@ -9,39 +9,42 @@ from django.forms import forms
 from apps.users.models import User
 
 
-class MyUserChangeForm(UserChangeForm) :
-    class Meta(UserChangeForm.Meta) :
+class MyUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
         model = User
 
 
-class MyUserCreationForm(UserCreationForm) :
+class MyUserCreationForm(UserCreationForm):
     error_message = UserCreationForm.error_messages.update({
-        'duplicate_username' : 'This username has already been taken.'
+        'duplicate_username':'This username has already been taken.'
     })
 
-    class Meta(UserCreationForm.Meta) :
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = UserCreationForm.Meta.fields
 
-    def clean_username(self) :
+    def clean_username(self):
         username = self.cleaned_data["username"]
-        try :
+        try:
             User.objects.get(username=username)
-        except User.DoesNotExist :
+        except User.DoesNotExist:
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
 
 
 @admin.register(User)
-class MyUserAdmin(AuthUserAdmin) :
+class MyUserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
     fieldsets = (
-                    ('User Profile', {'fields' : ['title', 'full_name', 'image', 'gender', ]}),
+                    ('User Profile', {'fields':['title', 'full_name', 'image', 'gender', ]}),
                 ) + AuthUserAdmin.fieldsets
     list_display = ('id', 'username', 'full_name', 'is_superuser')
     search_fields = ('username', 'email', 'full_name')
     list_filter = ('is_staff', 'is_superuser', 'is_active')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 # admin.site.register(User)

@@ -61,6 +61,11 @@ class TeamMember(models.Model):
         """Store Team Members."""
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.company = CompanyDetail.objects.last()
+        super().save(*args, **kwargs)
+
 
 class Service(AbstractImageEntry, AbstractCreatedAtUpdatedAt):
     """Service of the company."""
@@ -77,6 +82,8 @@ class Service(AbstractImageEntry, AbstractCreatedAtUpdatedAt):
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
+        if not self.pk:
+            self.company = CompanyDetail.objects.last()
         super().save(*args, **kwargs)
 
 
@@ -93,9 +100,10 @@ class Testimonial(AbstractCreatedAtUpdatedAt):
     def __str__(self):
         return self.name
 
-        # def save(self, *args, **kwargs):
-        #     self.company = CompanyDetail.objects.first()
-        #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.company = CompanyDetail.objects.last()
+        super().save(*args, **kwargs)
 
 
 class HomePageTopImageSlider(models.Model):
@@ -109,6 +117,11 @@ class HomePageTopImageSlider(models.Model):
     def __str__(self):
         """Return image object."""
         return str(self.image.name)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.company = CompanyDetail.objects.last()
+        super().save(*args, **kwargs)
 
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
@@ -130,6 +143,11 @@ class Client(models.Model):
     def __str__(self):
         """Return client name."""
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.company = CompanyDetail.objects.last()
+        super().save(*args, **kwargs)
 
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
