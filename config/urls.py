@@ -39,7 +39,7 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
     url(r'^$', LandingPageView.as_view(), name='landing'),
-    url(r'^api/', include('apps.api.urls'), name='api'),
+    # url(r'^api/', include('apps.api.urls'), name='api'),
     path('products/', include('apps.product.urls', namespace='product')),
     path('company/', include('apps.company.urls', namespace='company')),
 ]
