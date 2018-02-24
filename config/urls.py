@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from apps.core.views import LandingPageView
+from apps.core.views import LandingPageView, error_500, error_404, error_400
 
 app_name = 'config'
 try:
@@ -51,3 +51,8 @@ if settings.DEBUG:
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
+
+handler404 = error_404
+handler500 = error_500
+handler400 = error_400
+# handle500 = 'handler500'

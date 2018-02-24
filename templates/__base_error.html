@@ -1,0 +1,10 @@
+{% extends '__base.html' %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-block bg-warning">
+            <h1>{% block error_message %}
+                Some thing went Wrong !!
+            {% endblock %}</h1>
+        </div>
+    </div>
+{% endblock %}
