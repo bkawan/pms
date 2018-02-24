@@ -24,8 +24,16 @@ from apps.core.views import LandingPageView
 app_name = 'config'
 try:
     admin.site.site_header = settings.SITE_HEADER
+
 except AttributeError:
     pass
+
+try:
+    # Text to put at the end of each page's <title>.
+    admin.site.site_title = settings.SITE_TITLE
+except AttributeError:
+    pass
+
 urlpatterns = [
     url(r'^summernote/', include('django_summernote.urls')),
 
